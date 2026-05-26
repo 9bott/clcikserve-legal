@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClickServe — السياسات القانونية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #185FA5;
+    --blue-light: #e8f1fb;
+    --blue-dark: #0d3d6b;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --bg: #f8faff;
+    --white: #ffffff;
+    --radius: 16px;
+  }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid #e5e9f0;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(24,95,165,0.07);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: var(--blue);
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--blue);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    padding: 4px 12px;
+    border-radius: 8px;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--blue);
+    background: var(--blue-light);
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+
+  /* TABS */
+  .tabs-wrapper {
+    max-width: 800px;
+    margin: -1.5rem auto 0;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .tabs {
+    display: flex;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 24px rgba(24,95,165,0.12);
+    overflow: hidden;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 1.1rem;
+    border: none;
+    background: transparent;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.25s;
+    border-bottom: 3px solid transparent;
+  }
+
+  .tab-btn.active {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+    background: var(--blue-light);
+  }
+
+  /* CONTENT */
+  .content-wrapper {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: 0 2px 16px rgba(24,95,165,0.06);
+    margin-bottom: 1.5rem;
+  }
+
+  .card h2 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--blue-dark);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--blue-light);
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .card p {
+    color: #374151;
+    margin-bottom: 0.75rem;
+    font-size: 0.97rem;
+  }
+
+  .card ul {
+    padding-right: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card ul li {
+    color: #374151;
+    margin-bottom: 0.4rem;
+    font-size: 0.97rem;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .update-date {
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: left;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e9f0;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--blue-dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  footer span { color: white; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">🔧</div>
+    ClickServe
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active" onclick="showTab('tos', this)">شروط الخدمة</a></li>
+    <li><a href="#" onclick="showTab('privacy', this)">سياسة الخصوصية</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <h1>السياسات القانونية</h1>
+  <p>تطبيق ClickServe للصيانة المنزلية في المملكة العربية السعودية</p>
+</div>
+
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('tos', this)">📋 شروط الخدمة</button>
+    <button class="tab-btn" onclick="showTab('privacy', this)">🔒 سياسة الخصوصية</button>
+  </div>
+</div>
+
+<div class="content-wrapper">
+
+  <!-- Terms of Service -->
+  <div class="page active" id="tos">
+    <div class="card">
+      <span class="badge">Terms of Service</span>
+      <h2>شروط الخدمة</h2>
+      <p>مرحباً بك في تطبيق <strong>ClickServe</strong>. باستخدامك للتطبيق، فإنك توافق على الشروط والأحكام التالية.</p>
+
+      <h3>1. قبول الشروط</h3>
+      <p>باستخدامك لتطبيق ClickServe، فإنك تقر بقراءة هذه الشروط وفهمها والموافقة عليها. إذا كنت لا توافق على أي من هذه الشروط، يرجى التوقف عن استخدام التطبيق.</p>
+
+      <h3>2. وصف الخدمة</h3>
+      <p>ClickServe منصة رقمية تربط أصحاب المنازل بمزودي خدمات الصيانة المنزلية المعتمدين في المملكة العربية السعودية، وتشمل الخدمات:</p>
+      <ul>
+        <li>خدمات السباكة والكهرباء</li>
+        <li>خدمات التكييف والتبريد</li>
+        <li>خدمات الدهانات والتشطيبات</li>
+        <li>خدمات النجارة والأعمال المنزلية الأخرى</li>
+      </ul>
+
+      <h3>3. التزامات المستخدم</h3>
+      <p>يلتزم المستخدم بـ:</p>
+      <ul>
+        <li>تقديم معلومات صحيحة ودقيقة عند التسجيل</li>
+        <li>عدم استخدام التطبيق لأغراض غير مشروعة</li>
+        <li>احترام مزودي الخدمة والتعامل معهم باحترام</li>
+        <li>الالتزام بمواعيد الخدمة المتفق عليها</li>
+      </ul>
+
+      <h3>4. المدفوعات والأسعار</h3>
+      <p>الأسعار المعروضة شاملة لضريبة القيمة المضافة. تحتفظ ClickServe بالحق في تعديل الأسعار مع إشعار مسبق للمستخدمين.</p>
+
+      <h3>5. إلغاء الخدمة</h3>
+      <p>يمكن إلغاء الطلب قبل ساعتين من الموعد المحدد دون أي رسوم. في حالة الإلغاء المتأخر، قد تُطبق رسوم إلغاء.</p>
+
+      <h3>6. المسؤولية</h3>
+      <p>ClickServe وسيط بين العملاء ومزودي الخدمة. نسعى لضمان جودة الخدمات لكننا لسنا مسؤولين مباشرة عن أي أضرار ناتجة عن سوء تنفيذ الخدمة.</p>
+
+      <h3>7. التعديلات</h3>
+      <p>نحتفظ بالحق في تعديل هذه الشروط في أي وقت. سيتم إشعارك بأي تغييرات جوهرية عبر التطبيق أو البريد الإلكتروني.</p>
+
+      <div class="update-date">آخر تحديث: مايو 2026</div>
+    </div>
+  </div>
+
+  <!-- Privacy Policy -->
+  <div class="page" id="privacy">
+    <div class="card">
+      <span class="badge">Privacy Policy</span>
+      <h2>سياسة الخصوصية</h2>
+      <p>نحن في <strong>ClickServe</strong> نقدّر خصوصيتك ونلتزم بحماية بياناتك الشخصية وفقاً لنظام حماية البيانات الشخصية في المملكة العربية السعودية.</p>
+
+      <h3>1. البيانات التي نجمعها</h3>
+      <ul>
+        <li>الاسم الكامل ورقم الجوال</li>
+        <li>عنوان المنزل وموقعه الجغرافي</li>
+        <li>تاريخ الطلبات والخدمات المطلوبة</li>
+        <li>بيانات الدفع (مشفرة وآمنة)</li>
+        <li>تقييمات ومراجعات الخدمات</li>
+      </ul>
+
+      <h3>2. كيف نستخدم بياناتك</h3>
+      <ul>
+        <li>تقديم الخدمات المطلوبة وإتمام الطلبات</li>
+        <li>التواصل معك بشأن طلباتك</li>
+        <li>تحسين جودة الخدمات والتطبيق</li>
+        <li>إرسال عروض وإشعارات ذات صلة (بموافقتك)</li>
+      </ul>
+
+      <h3>3. مشاركة البيانات</h3>
+      <p>لا نبيع بياناتك لأي طرف ثالث. قد نشارك بياناتك مع:</p>
+      <ul>
+        <li>مزودي الخدمة لإتمام طلبك فقط</li>
+        <li>الجهات الحكومية عند الطلب القانوني</li>
+        <li>شركاء التقنية لتشغيل الخدمات (بعقود سرية)</li>
+      </ul>
+
+      <h3>4. حماية البيانات</h3>
+      <p>نستخدم تشفير SSL وأحدث تقنيات الأمان لحماية بياناتك. يتم تخزين البيانات على خوادم آمنة داخل المملكة العربية السعودية.</p>
+
+      <h3>5. حقوقك</h3>
+      <ul>
+        <li>الوصول إلى بياناتك الشخصية</li>
+        <li>تصحيح أي معلومات غير دقيقة</li>
+        <li>طلب حذف بياناتك</li>
+        <li>إلغاء الاشتراك في الإشعارات التسويقية</li>
+      </ul>
+
+      <h3>6. ملفات تعريف الارتباط (Cookies)</h3>
+      <p>نستخدم ملفات تعريف الارتباط لتحسين تجربتك. يمكنك التحكم في إعداداتها من متصفحك.</p>
+
+      <h3>7. التواصل معنا</h3>
+      <p>لأي استفسارات بشأن الخصوصية، تواصل معنا عبر: <strong>privacy@click-serve.com</strong></p>
+
+      <div class="update-date">آخر تحديث: مايو 2026</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <span>ClickServe</span> — جميع الحقوق محفوظة | المملكة العربية السعودية</p>
+</footer>
+
+<script>
+function showTab(tab, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
